@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711008762713",
+    "project_id": "cinemaster-1de4f",
+    "storage_bucket": "cinemaster-1de4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711008762713:android:5410930ee2a8b1324e2a48",
+        "android_client_info": {
+          "package_name": "com.example.cinemaster_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_8cxb0KEeeoujLHWFTHRHmM0dyzRa-mU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
