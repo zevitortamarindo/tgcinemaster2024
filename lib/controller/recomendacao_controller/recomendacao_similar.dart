@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math';
+import 'dart:convert'; // Para converter a resposta JSON
+import 'package:http/http.dart' as http; // Para fazer requisições HTTP
 
 Future<List<String>> recommendMoviesBasedOnWatchlist(String currentUserId) async {
   List<String> recommendedMovies = [];
@@ -110,8 +112,31 @@ double calculateEuclideanSimilarity(int commonMovies, int commonStreaming) {
 
 // Função para sugerir um filme aleatório em caso de falha na recomendação
 Future<String> suggestRandomMovie() async {
-  List<String> popularMovies = ['912649', '236994', '945961'];
-  String randomMovie = popularMovies[Random().nextInt(popularMovies.length)];
-  print("Sugerindo um filme aleatório: $randomMovie");
-  return randomMovie;
+  const String apiKey = 'e90fb2a07f28a7e12c61965533ba0079'; // Substitua pela sua chave de API do TMDB
+  const String url = 'https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=pt-BR&page=1';
+
+  try {
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      // Decodificar o JSON da resposta
+      final Map<String, dynamic> data = json.decode(response.body);
+      final List<dynamic> results = data['results'];
+
+      // Extrair os IDs dos filmes
+      List<String> popularMovies = results.map((movie) => movie['id'].toString()).toList();
+
+      // Selecionar um filme aleatório da lista
+      String randomMovie = popularMovies[Random().nextInt(popularMovies.length)];
+      print("Sugerindo um filme aleatório da API TMDB: $randomMovie");
+      return randomMovie;
+    } else {
+      print("Erro na requisição à API TMDB. Status Code: ${response.statusCode}");
+      throw Exception('Falha ao buscar filmes populares');
+    }
+  } catch (e) {
+    print("Erro ao sugerir filme aleatório: $e");
+    // Retornar um ID fixo como fallback em caso de erro
+    return '912649'; // ID fixo como última opção
+  }
 }

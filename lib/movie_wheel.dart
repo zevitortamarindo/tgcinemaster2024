@@ -134,18 +134,7 @@ class _MovieWheelScreenState extends State<MovieWheelScreen> {
                 height: 1.3625 * ffem / fem,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              'ID: ${selectedMovie!['id']}',
-              textAlign: TextAlign.center,
-              style: SafeGoogleFont(
-                'Open Sans',
-                color: Colors.white,
-                fontSize: 18 * ffem,
-                fontWeight: FontWeight.w500,
-                height: 1.3625 * ffem / fem,
-              ),
-            ),
+            
             SizedBox(height: 35),
             TextButton(
               onPressed: () {
