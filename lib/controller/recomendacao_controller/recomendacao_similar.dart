@@ -112,7 +112,7 @@ double calculateEuclideanSimilarity(int commonMovies, int commonStreaming) {
 
 // Função para sugerir um filme aleatório em caso de falha na recomendação
 Future<String> suggestRandomMovie() async {
-  const String apiKey = 'e90fb2a07f28a7e12c61965533ba0079'; // Substitua pela sua chave de API do TMDB
+  const String apiKey = 'e90fb2a07f28a7e12c61965533ba0079';
   const String url = 'https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=pt-BR&page=1';
 
   try {
